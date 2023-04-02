@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Error Msg -->
+    <p class="ErrorMsg position-absolute container-fluid"></p>
+
+    <!-- Navbar -->
+    <nav class=" navbar navbar-expand-xs p-2 fw-bold fixed-top">
+        <div>
+            <i class="bi bi-cloud-sun-fill fs-2 pb-1 px-2" style="color: #fcc60e;"></i>
+            <span class="text-white">Weather</span>
+            <span class="text-warning">Forecast</span>
+        </div>
+        <form class="d-flex position-absolute start-50 translate-middle-x" onsubmit="event.preventDefault();">
+            <div class="search_filed">
+                <input class="form-control me-2 search-box" id="searchcity" type="search" placeholder="Search"
+                    aria-label="Search">
+            </div>
+            <button class="text-white btn btn-outline-dark searchbtn " id="searchbtn"> <i class="bi bi-search"
+                    type="submit"></i></button>
+        </form>
+        <div class=" position-absolute end-0 translate-middle-x">
+            <button type="button" class="btn btn-outline-light rounded-circle m-2" id="fahrtocels">°C</button>
+            <button type="button" class="btn btn-outline-light rounded-circle" id="celcandfahr">°F</button>
+        </div>
+    </nav>
+
+
+    <!-- display current weather -->
+    <div class="container-fluid  row sidebar ">
+        <div class="col-12 col-md-4 p-5 leftbar rounded ">
+
+            <div align="center" class="text-white pt-5  ">
+                <p class="icon">-</p>
+                <p class=" temp fs-2">
+                <div id="F" style="display:none"> </div>
+                <div id="C" style="display:block"> </div>
+                </p>
+                <p class="summary fs-4 p-2">-</p>
+                <div class="d-flex justify-content-evenly p-2"><span>Today</span> <span class="date">- </span></div>
+                <div class="p-4">
+                    <i class="bi bi-geo-alt-fill pt-2"></i>
+                    <span class="location pt-2" id="location">
+                        -
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- display today's weather highlight -->
+        <div class="col-12 col-md-8  right_bar p-5 rounded">
+            <div class="text-white  ">
+                <h3>Today's highlight</h3>
+                <hr class="border border-light border-2 ">
+                <div class=" d-flex flex-wrap justify-content-evenly text-center  ">
+                    <div class="m-2 weather_info rounded shadow-lg">
+                        <h5>Wind Status</h5>
+                        <h6><span class="wind fs-2 ">-</span><span>mph</span></h6>
+                    </div>
+                    <div class="m-2 weather_info  rounded shadow-lg">
+                        <h5>Humidity</h5>
+                        <h6><span class="humidity fs-2 ">-</span><span>%</span></h6>
+
+
+                    </div>
+                    <div class="m-2 weather_info  rounded shadow-lg">
+                        <h5>Feels Like</h5>
+                        <h6><span class="feelslike fs-2 ">-</span><span></span></h6>
+
+
+                    </div>
+                    <div class="m-2 weather_info  rounded shadow-lg">
+                        <h5>Cloud</h5>
+                        <h6><span class="cloud fs-2 ">-</span><span></span></h6>
+
+
+                    </div>
+                    <div class="m-2 weather_info rounded shadow-lg">
+                        <h5>UV</h5>
+                        <h6><span class="uv fs-2 ">-</span></h6>
+
+                    </div>
+                    <div class="m-2 weather_info  rounded shadow-lg">
+                        <h5>Air pressure</h5>
+                        <h6><span class="air fs-2 ">-</span><span>mb</span></h6>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- weather forecasting for a week-->
+    <div class="pt-5 container-fluid ">
+        <div class="forecast p-5 ">
+            <h3 class="text-white">Week Forecast</h3>
+            <hr class="border border-light border-2 ">
+            <div class=" d-flex flex-wrap justify-content-evenly text-center p-5 text-white forecastcard m-4">
+
+                <!-- Day1 -->
+                <div class="card Day1 m-2 rounded shadow-lg ">
+                    <div class="card-header Day1-header" id="heading">-</div>
+                    <div class="card-body Day1-body row row-cols-2">
+                        <div class=" Day1-img col">-</div>
+                        <p class="card-text Day1-temp col">-</p>
+                        <p class="Day1-humidity col">-</p>
+                        <p class="Day1-wind col">-</p>
+                    </div>
+                </div>
+
+                <!-- Day2 -->
+                <div class="card Day2 m-2  rounded shadow-lg ">
+                    <div class="card-header Day2-header" id="heading">-</div>
+                    <div class="card-body Day2-body row row-cols-2">
+                        <div class=" Day2-img col">-</div>
+                        <p class="card-text Day2-temp col">-</p>
+                        <p class="Day2-humidity col">-</p>
+                        <p class="Day2-wind col">-</p>
+                    </div>
+                </div>
+
+                <!-- Day3 -->
+                <div class="card Day3 m-2  rounded shadow-lg ">
+                    <div class="card-header Day3-header" id="heading">-</div>
+                    <div class="card-body Day3-body row row-cols-2">
+                        <div class=" Day3-img col">-</div>
+                        <p class="card-text Day3-temp col">-</p>
+                        <p class="Day3-humidity col">-</p>
+                        <p class="Day3-wind col">-</p>
+                    </div>
+                </div>
+
+                <!-- Day4 -->
+                <div class="card Day4 m-2  rounded shadow-lg ">
+                    <div class="card-header Day4-header" id="heading">-</div>
+                    <div class="card-body Day4-body row row-cols-2">
+                        <div class=" Day4-img col">-</div>
+                        <p class="card-text Day4-temp col">-</p>
+                        <p class="Day4-humidity col">-</p>
+                        <p class="Day4-wind col">-</p>
+                    </div>
+                </div>
+
+                <!-- Day5 -->
+                <div class="card Day5 m-2  rounded shadow-lg ">
+                    <div class="card-header Day5-header" id="heading">-</div>
+                    <div class="card-body Day5-body row row-cols-2">
+                        <div class=" Day5-img col">-</div>
+                        <p class="card-text Day5-temp col">-</p>
+                        <p class="Day5-humidity col">-</p>
+                        <p class="Day5-wind col">-</p>
+                    </div>
+                </div>
+
+                <!-- Day6 -->
+                <div class="card Day6 m-2  rounded shadow-lg ">
+                    <div class="card-header Day6-header" id="heading">-</div>
+                    <div class="card-body Day6-body row row-cols-2">
+                        <div class=" Day6-img col">-</div>
+                        <p class="card-text Day6-temp col">-</p>
+                        <p class="Day6-humidity col">-</p>
+                        <p class="Day6-wind col">-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="fw-bold d-flex justify-content-between align-items-baseline p-2 m-2 ">
+        <div>
+            <i class="bi bi-cloud-sun-fill fs-2 pb-1 px-2" style="color: #fcc60e;"></i>
+            <span class="text-white">Weather</span>
+            <span class="text-warning">Forecast</span>
+        </div>
+        <div class="DesignerInfo text-white">
+            <p>Designed and Developed By <span id="Name" class="text-warning">Shruti Gova</span></p>
+        </div>
+        <div class="SocialMedia " align="center">
+            <a href="https://github.com/ShrutiGova" target="_blank" title="Github-Profile"><i
+                    class="bi bi-github text-white fs-4 pb-1 px-2"></i></a>
+            <a href="https://www.linkedin.com/in/shruti-gova-9531781b8/" target="_blank" class=""
+                title="Linkdin-Profile"><i class="bi bi-linkedin text-white pb-1 px-2 fs-4"></i></a>
+        </div>
+
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
